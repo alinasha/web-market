@@ -10,14 +10,21 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>webmarket-model</module>
-        <module>webmarket-data</module>
         <module>webmarket-logic</module>
         <module>webmarket-web</module>
+        <module>webmarket-data</module>
     </modules>
 
     <properties>
         <spring.version>5.1.5.RELEASE</spring.version>
+        <spring.data.version>2.1.5.RELEASE</spring.data.version>
         <jackson.version>2.9.8</jackson.version>
+        <persistence.javax.api.verstion>2.2</persistence.javax.api.verstion>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <database.driver.postgresql.version>9.1-901-1.jdbc4</database.driver.postgresql.version>
+        <hibernate.version>5.4.2.Final</hibernate.version>
     </properties>
 
     <dependencyManagement>
@@ -47,7 +54,53 @@
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-jpa</artifactId>
+                <version>${spring.data.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-commons</artifactId>
+                <version>${spring.data.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${database.driver.postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>${persistence.javax.api.verstion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <target>${maven.compiler.target}</target>
+                        <source>${maven.compiler.source}</source>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
