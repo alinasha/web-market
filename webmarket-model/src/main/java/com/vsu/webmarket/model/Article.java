@@ -1,0 +1,100 @@
+package com.vsu.webmarket.model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "articles")
+public class Article {
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(name = "product_exists", nullable = false)
+    private int productExists;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "epid")
+    private String epid;
+
+    @Column(name = "product_web_url")
+    private String productWebUrl;
+
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "version")
+    private String version;
+
+    public Article() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getProductExists() {
+        return productExists;
+    }
+
+    public void setProductExists(int productExists) {
+        this.productExists = productExists;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getEpid() {
+        return epid;
+    }
+
+    public void setEpid(String epid) {
+        this.epid = epid;
+    }
+
+    public String getProductWebUrl() {
+        return productWebUrl;
+    }
+
+    public void setProductWebUrl(String productWebUrl) {
+        this.productWebUrl = productWebUrl;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+}
