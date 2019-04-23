@@ -1,0 +1,14 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition name="welcome_page"
+                extends="common_template">
+        <put-attribute name="top"
+                       value="/WEB-INF/views/tiles/top/top_mock.jsp"/>
+        <put-attribute name="side"
+                       value="/WEB-INF/views/tiles/middle/side/side_mock.jsp"/>
+        <put-attribute name="content"
+                       value="/WEB-INF/views/tiles/middle/content/search_results.jsp"/>
+    </definition>
+</tiles-definitions>

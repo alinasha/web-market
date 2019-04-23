@@ -1,0 +1,30 @@
+
+.auth-form {
+    text-align: center;
+}
+
+.auth-form .auth_field {
+    margin: 0 auto;
+    padding: 0.15rem 0.3rem;
+    width: 100%;
+}
+
+.auth-form .auth-text-box {
+    padding: 0.2rem     0.5rem;
+}
+
+.auth-form .auth-button {
+    padding: 0.2rem 1rem;
+    font-size: 1rem;
+}
+
+.auth-form .auth-label {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #6a9dcd;
+}
+
+.auth-form .auth-label:hover {
+    cursor: pointer;
+}

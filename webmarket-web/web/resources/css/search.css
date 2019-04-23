@@ -1,0 +1,21 @@
+.search-form {
+    padding: 0.2rem;
+    display: flex;
+}
+
+.search-form .search-text-box {
+    padding: 0.5rem;
+    flex: 1;
+}
+
+.search-form .search-button {
+    border: 1px solid black;
+    background-color: white;
+    flex: 0;
+    padding: 0 0.5rem;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
