@@ -12,26 +12,17 @@ public class Article {
     @GeneratedValue
     private long id;
 
-    @Column(name = "product_exists", nullable = false)
-    private boolean productExists;
-
-    @Column(name = "brand")
-    private String brand;
-
-    @Column(name = "description")
-    private String description;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Column(name = "external_id")
-    private String extentalId;
+    private String externalId;
 
     @Column(name = "product_web_url")
     private String productWebUrl;
 
     @Column(name = "title")
     private String title;
-
-    @Column(name = "version")
-    private String version;
 
     @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
     private List<Favourite> favourites;
@@ -52,36 +43,12 @@ public class Article {
         this.id = id;
     }
 
-    public boolean isProductExists() {
-        return productExists;
+    public String getExternalId() {
+        return externalId;
     }
 
-    public void setProductExists(boolean productExists) {
-        this.productExists = productExists;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getExtentalId() {
-        return extentalId;
-    }
-
-    public void setExtentalId(String extentalId) {
-        this.extentalId = extentalId;
+    public void setExternalId(String externalId) {
+        this.externalId = externalId;
     }
 
     public String getProductWebUrl() {
@@ -100,12 +67,12 @@ public class Article {
         this.title = title;
     }
 
-    public String getVersion() {
-        return version;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public List<Favourite> getFavourites() {
