@@ -1,8 +1,9 @@
 package com.vsu.webmarket.logic.product.sources.adapters;
 
 import com.vsu.webmarket.logic.product.ProductSource;
+import com.vsu.webmarket.logic.product.productmodel.ProductInDetail;
+import com.vsu.webmarket.logic.product.productmodel.ProductInList;
 import com.vsu.webmarket.logic.product.sources.EBayClassRenameMe;
-import com.vsu.webmarket.model.Article;
 
 import java.util.List;
 
@@ -14,12 +15,12 @@ public class EBayClassRenameAdapter implements ProductSource {
     }
 
     @Override
-    public List<Article> getSearchResult(String searchPhrase) {
+    public List<ProductInList> getSearchResult(String searchPhrase) {
         return null;
     }
 
     @Override
-    public Article getDetailedArticle(String productId) {
+    public ProductInDetail getDetailedArticle(String productId) {
         return null;
     }
 }

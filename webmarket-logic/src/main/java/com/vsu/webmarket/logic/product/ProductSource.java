@@ -1,11 +1,12 @@
 package com.vsu.webmarket.logic.product;
 
-import com.vsu.webmarket.model.Article;
+import com.vsu.webmarket.logic.product.productmodel.ProductInDetail;
+import com.vsu.webmarket.logic.product.productmodel.ProductInList;
 
 import java.util.List;
 
 public interface ProductSource {
-    List<Article> getSearchResult(String searchPhrase);
+    List<ProductInList> getSearchResult(String searchPhrase);
 
-    Article getDetailedArticle(String productId);
+    ProductInDetail getDetailedArticle(String productId);
 }
