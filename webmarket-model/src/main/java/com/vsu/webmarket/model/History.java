@@ -1,23 +1,26 @@
 package com.vsu.webmarket.model;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 @Entity
-@Table(name = "history")
+@Table(name = "history", schema = "public")
 public class History {
 
     @Id
     @GeneratedValue
     private long id;
 
-    @Column(name = "user_id", nullable = false)
-    private long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "article_id", nullable = false)
-    private long articleId;
+    @ManyToOne
+    @JoinColumn(name = "article_id", nullable = false)
+    private Article article;
 
     @Column(name = "last_viewed", nullable = false)
-    private long lastViewed;
+    private Calendar lastViewed;
 
     public History() {
     }
@@ -30,27 +33,27 @@ public class History {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getArticleId() {
-        return articleId;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setArticleId(long articleId) {
-        this.articleId = articleId;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
-    public long getLastViewed() {
+    public Calendar getLastViewed() {
         return lastViewed;
     }
 
-    public void setLastViewed(long lastViewed) {
+    public void setLastViewed(Calendar lastViewed) {
         this.lastViewed = lastViewed;
     }
 }

@@ -3,11 +3,16 @@ package com.vsu.webmarket.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_settings")
+@Table(name = "user_settings", schema = "public")
 public class UserSettings {
 
-    @Column(name = "user_id", nullable = false, unique = true)
-    private long userId;
+    @Id
+    @Column(name = "user_id")
+    private long id;
+
+    @MapsId
+    @OneToOne
+    private User user;
 
     @Column(name = "settings_user")
     private String settingsUser;
@@ -24,12 +29,20 @@ public class UserSettings {
     public UserSettings() {
     }
 
-    public long getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getSettingsUser() {
