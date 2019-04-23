@@ -1,9 +1,11 @@
 package com.vsu.webmarket.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "articles")
+@Table(name = "articles", schema = "public")
 public class Article {
 
     @Id
@@ -11,7 +13,7 @@ public class Article {
     private long id;
 
     @Column(name = "product_exists", nullable = false)
-    private int productExists;
+    private boolean productExists;
 
     @Column(name = "brand")
     private String brand;
@@ -19,8 +21,8 @@ public class Article {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "epid")
-    private String epid;
+    @Column(name = "external_id")
+    private String extentalId;
 
     @Column(name = "product_web_url")
     private String productWebUrl;
@@ -31,7 +33,15 @@ public class Article {
     @Column(name = "version")
     private String version;
 
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    private List<Favourite> favourites;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.LAZY)
+    private List<History> histories;
+
     public Article() {
+        this.favourites = new ArrayList<>();
+        this.histories = new ArrayList<>();
     }
 
     public long getId() {
@@ -42,11 +52,11 @@ public class Article {
         this.id = id;
     }
 
-    public int getProductExists() {
+    public boolean isProductExists() {
         return productExists;
     }
 
-    public void setProductExists(int productExists) {
+    public void setProductExists(boolean productExists) {
         this.productExists = productExists;
     }
 
@@ -66,12 +76,12 @@ public class Article {
         this.description = description;
     }
 
-    public String getEpid() {
-        return epid;
+    public String getExtentalId() {
+        return extentalId;
     }
 
-    public void setEpid(String epid) {
-        this.epid = epid;
+    public void setExtentalId(String extentalId) {
+        this.extentalId = extentalId;
     }
 
     public String getProductWebUrl() {
@@ -96,5 +106,21 @@ public class Article {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public List<Favourite> getFavourites() {
+        return favourites;
+    }
+
+    public void setFavourites(List<Favourite> favourites) {
+        this.favourites = favourites;
+    }
+
+    public List<History> getHistories() {
+        return histories;
+    }
+
+    public void setHistories(List<History> histories) {
+        this.histories = histories;
     }
 }
