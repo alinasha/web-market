@@ -7,4 +7,8 @@
                 value.show();
             })
     }
+    SearchResultListComponent.getInstance()
+        .then(value => {
+            value.show();
+        })
 })();

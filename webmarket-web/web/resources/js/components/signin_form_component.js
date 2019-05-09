@@ -25,11 +25,11 @@ class SignInFormComponent {
                         console.error('Статус ответа: ' + resp.status + ': ' + resp.statusText);
                     }
                     SignInFormComponent.INSTANCE = new SignInFormComponent(resp.data.trim());
-                    return SignInFormComponent.INSTANCE;
+                    return Promise.resolve(SignInFormComponent.INSTANCE);
                 })
                 .catch(resp => {
                     console.error('Ошибка получения данных формы для авторизации: ' + resp.data);
-                    return null;
+                    return Promise.reject(resp);
                 });
         } else {
             return Promise.resolve(SignInFormComponent.INSTANCE);

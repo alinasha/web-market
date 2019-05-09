@@ -25,11 +25,11 @@ class SignUpFormComponent {
                         console.error('Статус ответа: ' + resp.status + ': ' + resp.statusText);
                     }
                     SignUpFormComponent.INSTANCE = new SignUpFormComponent(resp.data.trim());
-                    return SignUpFormComponent.INSTANCE;
+                    return Promise.resolve(SignUpFormComponent.INSTANCE);
                 })
                 .catch(resp => {
                     console.error('Ошибка получения данных формы для регистрации: ' + resp.data);
-                    return null;
+                    return Promise.reject();
                 });
         } else {
             return Promise.resolve(SignUpFormComponent.INSTANCE);

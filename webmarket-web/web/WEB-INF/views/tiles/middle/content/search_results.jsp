@@ -4,8 +4,9 @@
 <div class="functional-block">
     <form class="search-form">
         <input type="text" class="search-text-box" placeholder="Введите название товара">
-        <div class="search-button">
+        <div id="search-button" class="search-button">
             Search
         </div>
     </form>
+    <div id="search-result-list"></div>
 </div>

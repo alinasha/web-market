@@ -7,3 +7,4 @@
 <link href="resources/css/middle.css" rel="stylesheet"/>
 <link href="resources/css/search.css" rel="stylesheet"/>
 <link href="resources/css/top.css" rel="stylesheet"/>
+<link href="resources/css/list.css" rel="stylesheet"/>

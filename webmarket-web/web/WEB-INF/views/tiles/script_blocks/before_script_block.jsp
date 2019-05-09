@@ -4,6 +4,7 @@
 
 <!-- Model -->
 <script src="resources/js/model/user.js"></script>
+<script src="resources/js/model/result.short.js"></script>
 
 <!-- Libs -->
 <script src="resources/js/lib/axios.min.js"></script>
@@ -15,3 +16,5 @@
 <!-- Components -->
 <script src="resources/js/components/signin_form_component.js"></script>
 <script src="resources/js/components/signup_form_component.js"></script>
+<script src="resources/js/components/search_result_list_component.js"></script>
+<script src="resources/js/components/search_result_item_component.js"></script>
