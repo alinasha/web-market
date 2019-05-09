@@ -1,24 +1,26 @@
-package com.vsu.webmarket.logic.product.productmodel;
+package com.vsu.webmarket.logic.product.sources.ebay.ebayModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductInDetailImpl implements ProductInDetail {
+public class EBayProductInDetail {
+
     private String webUrl;
-    private ProductInList productInList;
+    private EBayProductInList productInList;
     private String description;
     private List<String> imageUrls;
     private List<String> parameters;
 
-    public ProductInDetailImpl() {
+    public EBayProductInDetail() {
         webUrl = "";
-        productInList = new ProductInListImpl("", "", "", "");
+        productInList = new EBayProductInList("", "", "", "");
         description = "";
         imageUrls = new ArrayList<>();
         parameters = new ArrayList<>();
     }
 
-    public ProductInDetailImpl(String webUrl, ProductInList productInList, String description, List<String> imageUrls, List<String> parameters) {
+    public EBayProductInDetail(String webUrl, EBayProductInList productInList,
+                               String description, List<String> imageUrls, List<String> parameters) {
         this.webUrl = webUrl;
         this.productInList = productInList;
         this.description = description;
@@ -26,32 +28,46 @@ public class ProductInDetailImpl implements ProductInDetail {
         this.parameters = parameters;
     }
 
-    @Override
     public String getWebUrl() {
         return webUrl;
     }
 
-    @Override
-    public ProductInList getProductListInfo() {
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
+    }
+
+    public EBayProductInList getProductInList() {
         return productInList;
     }
 
-    @Override
+    public void setProductInList(EBayProductInList productInList) {
+        this.productInList = productInList;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    @Override
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<String> getImageUrls() {
         return imageUrls;
     }
 
-    @Override
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     public List<String> getParameters() {
         return parameters;
     }
 
-    @Override
+    public void setParameters(List<String> parameters) {
+        this.parameters = parameters;
+    }
+
     public String toString() {
         String res = "("+super.toString()+")\n";
         //begin

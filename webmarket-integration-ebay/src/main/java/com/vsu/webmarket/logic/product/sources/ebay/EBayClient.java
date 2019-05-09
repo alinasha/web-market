@@ -1,58 +1,37 @@
-package com.vsu.webmarket.logic.product.sources.adapters;
+package com.vsu.webmarket.logic.product.sources.ebay;
 
-import com.squareup.okhttp.*;
-import com.sun.istack.Nullable;
-import com.vsu.webmarket.logic.product.ProductSource;
-import com.vsu.webmarket.logic.product.productmodel.ProductInDetail;
-import com.vsu.webmarket.logic.product.productmodel.ProductInDetailImpl;
-import com.vsu.webmarket.logic.product.productmodel.ProductInList;
-import com.vsu.webmarket.logic.product.productmodel.ProductInListImpl;
-import com.vsu.webmarket.logic.product.sources.EBayClassRenameMe;
-import jdk.nashorn.api.scripting.URLReader;
+import com.vsu.webmarket.logic.product.sources.ebay.ebayModel.EBayProductInDetail;
+import com.vsu.webmarket.logic.product.sources.ebay.ebayModel.EBayProductInList;
+import okhttp3.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.vsu.webmarket.logic.product.sources.adapters.EBayClassRenameAdapter.SortType.LOWER_PRICE_FIRST;
+public class EBayClient {
 
-public class EBayClassRenameAdapter implements ProductSource {
-    private EBayClassRenameMe origin;
-
-    public enum SortType {
+    public enum EBaySortType {
         HIGH_PRICE_FIRST,
-        LOWER_PRICE_FIRST;
+        LOWER_PRICE_FIRST
     }
 
-    public EBayClassRenameAdapter(EBayClassRenameMe origin) {
-        this.origin = origin;
-    }
-
-    @Override
-    public List<ProductInList> getSearchResult(String searchPhrase, int pageNumber) {
+    public List<EBayProductInList> getSearchResult(String searchPhrase, int pageNumber) {
         return getSearchResult(searchPhrase, pageNumber, null);
     }
 
-    @Override
-    public List<ProductInList> getSearchResult(String searchPhrase, int pageNumber, SortType sortType) {
+    public List<EBayProductInList> getSearchResult(String searchPhrase, int pageNumber, EBaySortType sortType) {
         return getSearchResult(searchPhrase, pageNumber, sortType, -1.0, -1.0);
     }
 
-    @Override
-    public List<ProductInList> getSearchResult(String searchPhrase, int pageNumber, SortType sortType, double minPriceRange, double maxPriceRange) {
+    public List<EBayProductInList> getSearchResult(String searchPhrase, int pageNumber, EBaySortType sortType, double minPriceRange, double maxPriceRange) {
         try {
             String apiServer = "http://svcs.sandbox.ebay.com/services/search/FindingService/v1";
             String serviceVersion = "1.0.0";
@@ -145,7 +124,7 @@ public class EBayClassRenameAdapter implements ProductSource {
                 JSONArray arr = obj.getJSONArray("findItemsByKeywordsResponse");
                 obj = arr.getJSONObject(0);
 
-                List<ProductInList> productInLists = new ArrayList<>();
+                List<EBayProductInList> productInLists = new ArrayList<>();
                 if (obj.has("ack") && obj.getJSONArray("ack").getString(0).equalsIgnoreCase("Success") && obj.has("searchResult")) {
                     obj = obj.getJSONArray("searchResult").getJSONObject(0);
 
@@ -189,7 +168,7 @@ public class EBayClassRenameAdapter implements ProductSource {
                             }
 
                             //add in list
-                            productInLists.add(new ProductInListImpl(productId, title, galleryURL, price));
+                            productInLists.add(new EBayProductInList(productId, title, galleryURL, price));
                         }
 
                         return productInLists;
@@ -202,8 +181,7 @@ public class EBayClassRenameAdapter implements ProductSource {
         return new ArrayList<>();
     }
 
-    @Override
-    public ProductInDetail getDetailedArticle(String productId) {
+    public EBayProductInDetail getDetailedArticle(String productId) {
         try {
             //productId = "110396037154"; //one image (for test)
             //productId = "110396188361"; //some images
@@ -240,7 +218,7 @@ public class EBayClassRenameAdapter implements ProductSource {
                 JSONObject xmlJSONObj = XML.toJSONObject(response);
                 response = xmlJSONObj.toString();
             } catch (JSONException e) {
-                return new ProductInDetailImpl();
+                return new EBayProductInDetail();
             }
 
             //извлечение информации
@@ -295,7 +273,7 @@ public class EBayClassRenameAdapter implements ProductSource {
                         }
                     }
 
-                    ProductInList productInList = new ProductInListImpl(productId, title, imageURL, price);
+                    EBayProductInList productInList = new EBayProductInList(productId, title, imageURL, price);
 
                     //------------------------------------------------------------
                     //[description]
@@ -351,13 +329,13 @@ public class EBayClassRenameAdapter implements ProductSource {
                     }
 
                     //return detail item
-                    return new ProductInDetailImpl(webUrl, productInList, description, imageUrls, parameters);
+                    return new EBayProductInDetail(webUrl, productInList, description, imageUrls, parameters);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return new ProductInDetailImpl();
+        return new EBayProductInDetail();
     }
 }

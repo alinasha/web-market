@@ -2,9 +2,8 @@ package com.vsu.webmarket.logic.product;
 
 import com.vsu.webmarket.logic.product.productmodel.ProductInDetail;
 import com.vsu.webmarket.logic.product.productmodel.ProductInList;
-import com.vsu.webmarket.logic.product.productmodel.ProductInListImpl;
-import com.vsu.webmarket.logic.product.sources.EBayClassRenameMe;
-import com.vsu.webmarket.logic.product.sources.adapters.EBayClassRenameAdapter;
+import com.vsu.webmarket.logic.product.sources.adapters.ebay.EBayProductSourceAdapter;
+import com.vsu.webmarket.logic.product.sources.ebay.EBayClient;
 
 import java.util.List;
 
@@ -15,14 +14,14 @@ public class TestMainClass {
     }
 
     private static void test1() {
-        EBayClassRenameMe origin = new EBayClassRenameMe();
-        EBayClassRenameAdapter adapter = new EBayClassRenameAdapter(origin);
+        EBayClient origin = new EBayClient();
+        EBayProductSourceAdapter adapter = new EBayProductSourceAdapter(origin);
 
         //список товаров
         String searchPhrase = "iphone";
         //List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1);
-        //List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1, EBayClassRenameAdapter.SortType.HIGH_PRICE_FIRST);
-        //List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1, EBayClassRenameAdapter.SortType.LOWER_PRICE_FIRST, 1, 2);
+        //List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1, EBayProductSourceAdapter.SortType.HIGH_PRICE_FIRST);
+        //List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1, EBayProductSourceAdapter.SortType.LOWER_PRICE_FIRST, 1, 2);
         List<ProductInList> list = adapter.getSearchResult(searchPhrase, 1, null, 10, 20);
         System.out.println("ПОИСК:");
         System.out.println("========================================================");
