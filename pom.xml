@@ -26,6 +26,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <database.driver.postgresql.version>42.2.5</database.driver.postgresql.version>
         <hibernate.version>5.4.2.Final</hibernate.version>
+        <json.version>20180813</json.version>
+        <okhttp.version>3.14.1</okhttp.version>
         <tiles.version>3.0.8</tiles.version>
         <servlet.jsp-api.version>2.2.1-b03</servlet.jsp-api.version>
         <servlet.servlet-api.version>3.1.0</servlet.servlet-api.version>
@@ -125,6 +127,16 @@
                 <groupId>org.apache.tiles</groupId>
                 <artifactId>tiles-servlet</artifactId>
                 <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

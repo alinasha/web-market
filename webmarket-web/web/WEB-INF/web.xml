@@ -20,8 +20,8 @@
     </servlet-mapping>
 
     <!--<context-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/WebMarketWeb-servlet.xml</param-value>-->
+    <!--<param-name>contextConfigLocation</param-name>-->
+    <!--<param-value>/WEB-INF/WebMarketWeb-servlet.xml</param-value>-->
     <!--</context-param>-->
 
     <listener>
