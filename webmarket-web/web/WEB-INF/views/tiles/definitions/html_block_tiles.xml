@@ -1,0 +1,21 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition name="signin_form" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/side/signin_form.jsp"/>
+    </definition>
+    <definition name="signup_form" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/side/signup_form.jsp"/>
+    </definition>
+    <definition name="result_list" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/content/list_of_results.jsp"/>
+    </definition>
+    <definition name="result_list_item" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/content/item_of_list_of_results.jsp"/>
+    </definition>
+</tiles-definitions>

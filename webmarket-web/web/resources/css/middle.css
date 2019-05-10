@@ -1,0 +1,28 @@
+#middle {
+    padding: 1rem 1rem 0 1rem;
+}
+
+#middle::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.functional-block {
+    background-color: lightgray;
+    padding: 0.5rem;
+}
+
+#content-view {
+    float: left;
+    display: block;
+    width: 70%;
+    padding-right: 0.5rem;
+}
+
+#side-view {
+    float: right;
+    display: block;
+    width: 30%;
+    padding-left: 0.5rem;
+}
