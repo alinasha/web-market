@@ -19,10 +19,10 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!--<context-param>-->
-    <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>/WEB-INF/WebMarketWeb-servlet.xml</param-value>-->
-    <!--</context-param>-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/WebMarketWeb-servlet.xml, classpath*:database-config.xml</param-value>
+    </context-param>
 
     <listener>
         <listener-class>

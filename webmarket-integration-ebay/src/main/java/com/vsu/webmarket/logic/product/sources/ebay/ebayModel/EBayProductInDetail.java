@@ -5,35 +5,35 @@ import java.util.List;
 
 public class EBayProductInDetail {
 
-    private String webUrl;
+    private String productUrl;
     private EBayProductInList productInList;
     private String description;
     private List<String> imageUrls;
     private List<String> parameters;
 
     public EBayProductInDetail() {
-        webUrl = "";
+        productUrl = "";
         productInList = new EBayProductInList("", "", "", "");
         description = "";
         imageUrls = new ArrayList<>();
         parameters = new ArrayList<>();
     }
 
-    public EBayProductInDetail(String webUrl, EBayProductInList productInList,
+    public EBayProductInDetail(String productUrl, EBayProductInList productInList,
                                String description, List<String> imageUrls, List<String> parameters) {
-        this.webUrl = webUrl;
+        this.productUrl = productUrl;
         this.productInList = productInList;
         this.description = description;
         this.imageUrls = imageUrls;
         this.parameters = parameters;
     }
 
-    public String getWebUrl() {
-        return webUrl;
+    public String getProductUrl() {
+        return productUrl;
     }
 
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
     }
 
     public EBayProductInList getProductInList() {
@@ -74,10 +74,10 @@ public class EBayProductInDetail {
         res += "{\n";
 
         //--------------------------------------------------------------
-        //[webUrl]
+        //[productUrl]
         //--------------------------------------------------------------
-        res += "  [webUrl]\n";
-        res += "    '"+webUrl+"'\n";
+        res += "  [productUrl]\n";
+        res += "    '"+productUrl+"'\n";
         res += "\n";
 
         //--------------------------------------------------------------
