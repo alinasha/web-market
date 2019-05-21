@@ -11,8 +11,8 @@ public class ProductInListEbayAdapter implements ProductInList {
     }
 
     @Override
-    public String getImageUrl() {
-        return origin.getImageUrl();
+    public String getProductId() {
+        return origin.getProductId();
     }
 
     @Override
@@ -21,12 +21,12 @@ public class ProductInListEbayAdapter implements ProductInList {
     }
 
     @Override
-    public String getPrice() {
-        return origin.getPrice();
+    public String getImageUrl() {
+        return origin.getImageUrl();
     }
 
     @Override
-    public String getProductId() {
-        return origin.getProductId();
+    public String getPrice() {
+        return origin.getPrice();
     }
 }

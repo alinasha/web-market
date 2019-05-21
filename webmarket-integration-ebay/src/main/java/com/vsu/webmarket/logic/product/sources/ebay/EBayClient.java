@@ -183,12 +183,9 @@ public class EBayClient {
 
     public EBayProductInDetail getDetailedArticle(String productId) {
         try {
-            //productId = "110396037154"; //one image (for test)
-            //productId = "110396188361"; //some images
-
             String url = "https://api.sandbox.ebay.com/ws/api.dll";
             String ebayAuthToken = "AgAAAA**AQAAAA**aAAAAA**GAWvXA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4aiCZCBoA6dj6x9nY+seQ**bPgEAA**AAMAAA**kzBAFgcj1tsipFbnwLkNzFkwsZATVSHvYVJs3aI8evf03VopbslSnGALytUE9fYaO4oAIXKioJgHhX8dKmgs6TohBLPMZy1OSSQpyP8Se5n1lBvJt+hKUrTSFJ4GedmW5WJa5kcBY5NtS2C4r8RgAqAtUOrNEx6e6iROJ+owoNpwflN8Gk2NQEkvcIee25nhLCi1wVqCCI05mCapPelSlOmdi90J6dfvp1H3d+rJ6I6kyGNdQ+ffl4d1k4AE/+IObiSvK0ztBm3E832nF+MYl1LwBuRrQgmEscpy/T4RejXeO3ncTyqOIiY5IftufSK456PpylDnFQ3yDyGR6El6mbykV6tvpYknQlInmsyMQgK3C8f4KUDUWGGiQq4BgphA1vaBSsLE9rtZoWMFAIdpBz7KVAbTWKQr+b/MAndirws1sNva7/m4nEy/rkKdRdUZXUziWLZMc9vSTICszRbls+wBdR9FP4CA5jAvy0JoeNCFVJeGQONcYQiFt5GqCdcTMvWYQOlCIq/ZzPZjOoHIrz+GBV+KgTh+8ayDteaXW5tlDh0/jBxc5dUiOeS99g9gD+54o/dhIeZ+gbW37/5oZIaMX+FtgyfdJX0Dir1cy3ZiAFPlpzi/A09+AMiMv1IpZRWExyKd2XRE8x8SdBWTkoVh2ekaLARcCiZbF184UjBeIk/QnbltRcYIcH+1PqQnItNsCac/DKwcImf0HUcoCFtDuwdbjikuO8NEoFIHthkXkkLupi5K26U6Sz/0VxJU";
-            String detailLevel = "ReturnAll"; // (optional) [ItemReturnAttributes, ItemReturnDescription, ReturnAll]
+            String detailLevel = "ReturnAll"; //[ItemReturnAttributes, ItemReturnDescription, ReturnAll]
             String version = "1081";
             String callName = "GetItem";
             String siteId = "0";
@@ -213,7 +210,7 @@ public class EBayClient {
             Response resp = client.newCall(request).execute();
             String response = resp.body().string();
 
-            //TODO конвертирование XML в JSON как мера для быстрого написания кода, с XML-парсером еще плохо работал
+            //TODO: конвертирование XML в JSON
             try {
                 JSONObject xmlJSONObj = XML.toJSONObject(response);
                 response = xmlJSONObj.toString();
@@ -230,14 +227,14 @@ public class EBayClient {
                     obj = obj.getJSONObject("Item");
 
                     //------------------------------------------------------------
-                    //[webUrl] - Получение данных для поля ProductInList
+                    //[productUrl] - Получение данных для поля ProductInList
                     //------------------------------------------------------------
-                    //webUrl
-                    String webUrl = "";
+                    //productUrl
+                    String productUrl = "";
                     if (obj.has("ListingDetails")) {
                         JSONObject obj1 = obj.getJSONObject("ListingDetails");
                         if (obj1.has("ViewItemURL")) {
-                            webUrl = obj1.getString("ViewItemURL");
+                            productUrl = obj1.getString("ViewItemURL");
                         }
                     }
 
@@ -329,7 +326,7 @@ public class EBayClient {
                     }
 
                     //return detail item
-                    return new EBayProductInDetail(webUrl, productInList, description, imageUrls, parameters);
+                    return new EBayProductInDetail(productUrl, productInList, description, imageUrls, parameters);
                 }
             }
         } catch (Exception e) {
