@@ -1,6 +1,6 @@
 class User {
-    constructor(){
-        this._username = '';
+    constructor(username){
+        this._username = username;
         this._password = '';
     }
 
@@ -21,4 +21,4 @@ class User {
     }
 }
 
-User.CURRENT = new User();
+User.CURRENT = null;

@@ -1,0 +1,20 @@
+#user-name-label {
+    font-weight: bold;
+}
+
+#user-info-table {
+    width: 100%;
+}
+
+#user-info-table tr td:last-child {
+    text-align: right;
+}
+
+#_user-info-logout {
+    padding: 4px;
+}
+
+#_user-button-open-history {
+    padding: 4px;
+    width: 100%;
+}

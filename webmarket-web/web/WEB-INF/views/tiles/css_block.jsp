@@ -8,3 +8,6 @@
 <link href="resources/css/search.css" rel="stylesheet"/>
 <link href="resources/css/top.css" rel="stylesheet"/>
 <link href="resources/css/list.css" rel="stylesheet"/>
+<link href="resources/css/user_info.css" rel="stylesheet"/>
+<link href="resources/css/detailed.css" rel="stylesheet"/>
+<link href="resources/css/history.css" rel="stylesheet"/>

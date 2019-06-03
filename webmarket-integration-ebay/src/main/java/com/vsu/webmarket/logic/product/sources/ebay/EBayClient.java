@@ -33,9 +33,9 @@ public class EBayClient {
 
     public List<EBayProductInList> getSearchResult(String searchPhrase, int pageNumber, EBaySortType sortType, double minPriceRange, double maxPriceRange) {
         try {
-            String apiServer = "http://svcs.sandbox.ebay.com/services/search/FindingService/v1";
+            String apiServer = "http://svcs.ebay.com/services/search/FindingService/v1";
             String serviceVersion = "1.0.0";
-            String securityAppName = "Vladimir-webmarke-SBX-5f2fb35bc-854a6ab5";
+            String securityAppName = "Vladimir-webmarke-PRD-3ea9be394-99324580";
             String responseDataFormat = "JSON";
             String callback = "_cb_findItemsByKeywords";
             String globalId = "EBAY-US";
@@ -84,7 +84,7 @@ public class EBayClient {
                     "&SERVICE-VERSION="+serviceVersion+
                     "&SECURITY-APPNAME="+securityAppName+
                     "&RESPONSE-DATA-FORMAT="+responseDataFormat+
-                    "&callback="+callback+
+                    //"&callback="+callback+
                     "&GLOBAL-ID="+globalId+
                     "&siteid="+siteId+
                     "&paginationInput.entriesPerPage="+entriesPerPage+
@@ -183,8 +183,8 @@ public class EBayClient {
 
     public EBayProductInDetail getDetailedArticle(String productId) {
         try {
-            String url = "https://api.sandbox.ebay.com/ws/api.dll";
-            String ebayAuthToken = "AgAAAA**AQAAAA**aAAAAA**GAWvXA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4aiCZCBoA6dj6x9nY+seQ**bPgEAA**AAMAAA**kzBAFgcj1tsipFbnwLkNzFkwsZATVSHvYVJs3aI8evf03VopbslSnGALytUE9fYaO4oAIXKioJgHhX8dKmgs6TohBLPMZy1OSSQpyP8Se5n1lBvJt+hKUrTSFJ4GedmW5WJa5kcBY5NtS2C4r8RgAqAtUOrNEx6e6iROJ+owoNpwflN8Gk2NQEkvcIee25nhLCi1wVqCCI05mCapPelSlOmdi90J6dfvp1H3d+rJ6I6kyGNdQ+ffl4d1k4AE/+IObiSvK0ztBm3E832nF+MYl1LwBuRrQgmEscpy/T4RejXeO3ncTyqOIiY5IftufSK456PpylDnFQ3yDyGR6El6mbykV6tvpYknQlInmsyMQgK3C8f4KUDUWGGiQq4BgphA1vaBSsLE9rtZoWMFAIdpBz7KVAbTWKQr+b/MAndirws1sNva7/m4nEy/rkKdRdUZXUziWLZMc9vSTICszRbls+wBdR9FP4CA5jAvy0JoeNCFVJeGQONcYQiFt5GqCdcTMvWYQOlCIq/ZzPZjOoHIrz+GBV+KgTh+8ayDteaXW5tlDh0/jBxc5dUiOeS99g9gD+54o/dhIeZ+gbW37/5oZIaMX+FtgyfdJX0Dir1cy3ZiAFPlpzi/A09+AMiMv1IpZRWExyKd2XRE8x8SdBWTkoVh2ekaLARcCiZbF184UjBeIk/QnbltRcYIcH+1PqQnItNsCac/DKwcImf0HUcoCFtDuwdbjikuO8NEoFIHthkXkkLupi5K26U6Sz/0VxJU";
+            String url = "https://api.ebay.com/ws/api.dll";
+            String ebayAuthToken = "AgAAAA**AQAAAA**aAAAAA**ItO0XA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6ANlYaoDpiBowudj6x9nY+seQ**a/YFAA**AAMAAA**CFwXUPJf0eEd4fitRYx23ii6szZwRlcn9wE4CVoHxiAOA7a4Bzm2k6DIgGRRxWfd2rZmcyVJviqohdMwbhdMr0DxhzPDRQaB7v/7CphWWPMegz/sSujC5CH+Dj5YxwkPUaDbVWUKHN1Uyy1qPWXluooqv/iZZ+2FOrbclXbCRRu89OpDdZM35OhvOup6Xzki2w7D1DM7IGoC1BK4S3prOoU+Lf2WYSbq5ndcOYKH1Z4rxVnMiKlmtcZDYbOBr1TOEgpFpEmhEUFXy92Ky2/6nt/QL0BTiGDJ66Aypr5/qVYdkhaLmxDHuEtP6jY7WTJGgSRZe9cdlPUToShApdiqoeX4GIDMXOg9OFW13d8rAorVEl+Y/NeABliUuJxrXtE8pT+exBbfFCh5XSvpX1MsNOn+O/Jh93hag36nHkzf9v7zUidYc1OuTSq4NM/WtzVlu0Zjm03V91elXeAcOb4oQfprxo2DSzYiJ3Le5wTcnLxm0wgueatd9/AHSth1WEq/mufl6DkqpHg3s/xUTv6HmqqVPBjAAaYAk5d/lMAYkbhxzHjDkdx5lpG3p5y7kBIRUl5RYP1U2FTv3Zi74bhlJkoHvmH7QO5VM918eSMbGTLu0rHiJxaGBzlaDPsd8P8QHvLSpiYdErftBZ5mtaP/CdL0HfU5G5diiCxv8B2OpCDTjq7A9qWEUgVFtsQWFQ8d6QEYZ7++7yaW8mkqBf+LesDbkE44U8wGNWPzOH1QNN0pa2CwyOwIVgU60sh1Bvx3";
             String detailLevel = "ReturnAll"; //[ItemReturnAttributes, ItemReturnDescription, ReturnAll]
             String version = "1081";
             String callName = "GetItem";
@@ -209,6 +209,7 @@ public class EBayClient {
                     .build();
             Response resp = client.newCall(request).execute();
             String response = resp.body().string();
+            System.out.println(response);
 
             //TODO: конвертирование XML в JSON
             try {

@@ -12,6 +12,8 @@ class AuthService {
      * @returns {boolean}
      */
     isLogined() {
-        return false;
+        return this._user != null;
     }
 }
+
+AuthService.INSTANCE = null;

@@ -9,4 +9,6 @@
         </div>
     </form>
     <div id="search-result-list"></div>
+    <div id="search-detailed-view" style="display: none"></div>
+    <div id="history-detailed-view" style="display: none"></div>
 </div>

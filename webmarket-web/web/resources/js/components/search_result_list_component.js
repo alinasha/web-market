@@ -13,7 +13,7 @@ class SearchResultListComponent {
     show() {
         const rootElement = document.getElementById('search-result-list');
         if (rootElement !== null) {
-            rootElement.innerHTML = this._data;
+                rootElement.innerHTML = this._data;
 
             const updateMaxHeight = (e) => {
                 const list = document.getElementById('search-result-container');
@@ -68,6 +68,18 @@ class SearchResultListComponent {
                         .then(value => {
                             this._getAndShowSearchResults();
                         });
+
+                    //спрятать детальный список о товаре
+                    const search_detailed_view = document.getElementById('search-detailed-view');
+                    search_detailed_view.style.display = 'none';
+
+                    //спрятать историю
+                    const history_detailed_view = document.getElementById('history-detailed-view');
+                    history_detailed_view.style.display = 'none';
+
+                    //показать список товаров
+                    const search_result_list = document.getElementById('search-result-list');
+                    search_result_list.style.display = 'block';
                 })
         }
     }
@@ -86,6 +98,7 @@ class SearchResultListComponent {
         requestText.phrase = document.getElementsByClassName('search-text-box')[0].value;
         axios.post('/data/search', requestText)
             .then(resp => {
+                console.log(resp);
                 if (resp.status !== 200) {
                     console.error('Статус ответа: ' + resp.status + ': ' + resp.statusText);
                 }

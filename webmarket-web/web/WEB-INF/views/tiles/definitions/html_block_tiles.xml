@@ -18,4 +18,16 @@
         <put-attribute name="block"
                        value="/WEB-INF/views/tiles/middle/content/item_of_list_of_results.jsp"/>
     </definition>
+    <definition name="result_detailed_view" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/content/search_detailed.jsp"/>
+    </definition>
+    <definition name="user_history" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/content/user_history.jsp"/>
+    </definition>
+    <definition name="user_info" template="/WEB-INF/views/templates/html_block_template.jsp">
+        <put-attribute name="block"
+                       value="/WEB-INF/views/tiles/middle/side/user_info.jsp"/>
+    </definition>
 </tiles-definitions>

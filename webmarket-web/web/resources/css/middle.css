@@ -16,13 +16,13 @@
 #content-view {
     float: left;
     display: block;
-    width: 70%;
+    width: 75%;
     padding-right: 0.5rem;
 }
 
 #side-view {
     float: right;
     display: block;
-    width: 30%;
+    width: 25%;
     padding-left: 0.5rem;
 }

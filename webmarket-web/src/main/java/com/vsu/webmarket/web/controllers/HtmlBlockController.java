@@ -27,4 +27,19 @@ public class HtmlBlockController {
     public String getResultListItem() {
         return "result_list_item";
     }
+
+    @GetMapping("/result_detailed_view")
+    public String getResultDetailedView() {
+        return "result_detailed_view";
+    }
+
+    @GetMapping("/history_view")
+    public String getHistoryView() {
+        return "user_history";
+    }
+
+    @GetMapping("/user_info")
+    public String getUserInfo() {
+        return "user_info";
+    }
 }

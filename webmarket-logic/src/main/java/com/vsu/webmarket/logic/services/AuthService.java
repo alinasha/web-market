@@ -28,7 +28,7 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    public void registerUser(User user) throws AuthException, NullPointerException {
+public void registerUser(User user) throws AuthException, NullPointerException {
         Objects.requireNonNull(user, "user is not set");
 
         String username = user.getLogin();

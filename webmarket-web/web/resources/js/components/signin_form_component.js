@@ -37,17 +37,60 @@ class SignInFormComponent {
     }
 
     _listen() {
+        //кнопка запрос на авторизацию
+        const sign_in_form_submit = document.getElementById("_sign-in-form-submit");
+        const sign_in_form_username = document.getElementById("_sign-in-form-username");
+        const sign_in_form_password = document.getElementById("_sign-in-form-password");
+        sign_in_form_submit.addEventListener('click',
+            e => {
+            var postData =
+                'username='+encodeURI(sign_in_form_username.value)+'&'
+                +'password='+encodeURI(sign_in_form_password.value);
+
+            axios.post('/auth/login', postData)
+                .then(function (res) {
+                    console.log(res);
+                    if (res != null && res.data != null && res.data.username != null) {
+
+                        //при успешной авторизации
+                        User.CURRENT = new User(res.data.username);
+                        UserComponent.getInstance()
+                            .then(value => {
+                                value.show();
+                            })
+                    } else {
+                        console.log('authentication failure');
+                        showErrorMessageInSignInForm();
+                    }
+                })
+                .catch(function (res) {
+                    console.log("authentication failure");
+                    showErrorMessageInSignInForm();
+                });
+        });
+
+        //кнопка переключение на форму регистрации
         const signin_to_signup_switch_button = document.getElementById('singin-to-signup-switch-button');
         if (signin_to_signup_switch_button !== null) {
             signin_to_signup_switch_button.addEventListener('click',
                 e => {
-                SignUpFormComponent.getInstance()
+                    SignUpFormComponent.getInstance()
                     .then(value => {
                         value.show();
                     });
-                })
+                });
         }
     }
 }
 
 SignInFormComponent.INSTANCE = null;
+
+function showErrorMessageInSignInForm() {
+    const sign_in_form_error = document.getElementById('_sign-in-form-error');
+    sign_in_form_error.style.display = "block";
+}
+
+function hideErrorMessageInSignInForm() {
+    const sign_in_form_error = document.getElementById('_sign-in-form-error');
+    sign_in_form_error.style.display = "none";
+}
