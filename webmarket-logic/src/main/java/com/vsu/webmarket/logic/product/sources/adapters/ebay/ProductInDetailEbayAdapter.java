@@ -14,8 +14,8 @@ public class ProductInDetailEbayAdapter implements ProductInDetail {
     }
 
     @Override
-    public String getWebUrl() {
-        return origin.getWebUrl();
+    public String getProductUrl() {
+        return origin.getProductUrl();
     }
 
     @Override

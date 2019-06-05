@@ -23,7 +23,7 @@
             </list>
         </property>
     </bean>
-    <context:component-scan base-package="com.vsu.webmarket.web.controllers"/>
+    <context:component-scan base-package="com.vsu.webmarket"/>
 
     <mvc:resources location="/resources/" mapping="/resources/**"/>
 

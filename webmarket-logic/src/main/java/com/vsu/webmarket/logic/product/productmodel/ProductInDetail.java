@@ -3,7 +3,7 @@ package com.vsu.webmarket.logic.product.productmodel;
 import java.util.List;
 
 public interface ProductInDetail {
-    String getWebUrl();
+    String getProductUrl();
     ProductInList getProductListInfo();
     String getDescription();
     List<String> getImageUrls();

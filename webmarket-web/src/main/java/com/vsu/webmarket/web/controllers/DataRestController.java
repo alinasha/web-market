@@ -1,73 +1,23 @@
 package com.vsu.webmarket.web.controllers;
 
+import com.google.gson.Gson;
+import com.vsu.webmarket.logic.product.productmodel.ProductInList;
+import com.vsu.webmarket.logic.product.sources.adapters.ebay.EBayProductSourceAdapter;
+import com.vsu.webmarket.logic.product.sources.ebay.EBayClient;
+import com.vsu.webmarket.web.controllers.rest.restmodel.SearchData;
+import com.vsu.webmarket.web.controllers.rest.restmodel.SearchResponseData;
+import com.vsu.webmarket.web.controllers.rest.restmodel.SearchResponseItem;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/data")
 public class DataRestController {
-    /*
-    i: [0]
-ProductId: [110402180436]
-Title: [iPhone 6, 6 Plus Power On/Off, Gold, 4 in 1  0509]
-ImageUrl: []
-Price: [USD 15.99]
------------------------------------------------------
-i: [1]
-ProductId: [110396359256]
-Title: [iPhone 6 6s Front Screen Glass Lens, Black, Generic 0426]
-ImageUrl: []
-Price: [USD 10.55]
------------------------------------------------------
-i: [2]
-ProductId: [110396354476]
-Title: [iPhone 6 6s Front Screen Glass Lens, White, Generic]
-ImageUrl: []
-Price: [USD 10.0]
------------------------------------------------------
-i: [3]
-ProductId: [110397095653]
-Title: [For iPhone5S 5 5C LCD Replacement Touch Screen Full Assembly W/ Button Camera US]
-ImageUrl: [http://thumbs2.sandbox.ebaystatic.com/pict/1103970956534040_0.jpg]
-Price: [USD 13.99]
------------------------------------------------------
-i: [4]
-ProductId: [110397096192]
-Title: [For iPhone5S 5 5C LCD Replacement Touch Screen Full Assembly W/ Button Camera US]
-ImageUrl: [http://thumbs1.sandbox.ebaystatic.com/pict/1103970961924040_0.jpg]
-Price: [USD 13.99]
------------------------------------------------------
-i: [5]
-ProductId: [110396025132]
-Title: [Bike Motorcycle Handlebar Mount Magnetic Phone Holder iPhone XS X Samsung Galaxy]
-ImageUrl: [http://thumbs1.sandbox.ebaystatic.com/pict/1103960251324040_0.jpg]
-Price: [USD 11.99]
------------------------------------------------------
-i: [6]
-ProductId: [110395947609]
-Title: [iPhone 6 Apple 23]
-ImageUrl: [http://thumbs2.sandbox.ebaystatic.com/pict/1103959476094040_0.jpg]
-Price: [USD 11.0]
------------------------------------------------------
-i: [7]
-ProductId: [110396061004]
-Title: [Kanex iPhone Dock with Lightning Cable-K8PDOCK]
-ImageUrl: [http://thumbs1.sandbox.ebaystatic.com/pict/1103960610044040_0.jpg]
-Price: [USD 16.35]
------------------------------------------------------
-i: [8]
-ProductId: [110396062169]
-Title: [Cellet 43235-159755 Home Charger for iPhone X, 8+, 7+, 6+, 5/5s/5c iPad Pro/Air]
-ImageUrl: [http://thumbs2.sandbox.ebaystatic.com/pict/1103960621694040_0.jpg]
-Price: [USD 13.93]
------------------------------------------------------
-i: [9]
-ProductId: [110395859529]
-Title: [iPhone 6, 6 Plus 7, 7 Plus,SE Battery, 2900mAh, 616-00249]
-ImageUrl: []
-Price: [USD 19.98]
-     */
+    private final Gson gson = new Gson();
+    private final EBayProductSourceAdapter productSource = new EBayProductSourceAdapter(new EBayClient());
 
     @PostMapping("/test")
     @ResponseBody
@@ -91,5 +41,32 @@ Price: [USD 19.98]
                 "\"price\": \"USD 10.55\"" +
                 "}" +
                 "]}";
+    }
+
+    @PostMapping("/search")
+    @ResponseBody
+    public String getSearchResponseData(@RequestBody String json, HttpServletResponse response) {
+        response.setStatus(200);
+        SearchData searchData = gson.fromJson(json, SearchData.class);
+        if (searchData.getPhrase() != null) {
+            List<ProductInList> searchResult =
+                    productSource.getSearchResult(searchData.getPhrase(), 1);
+            List<SearchResponseItem> searchResponseItems
+                    = new ArrayList<>(searchResult.size());
+            for (ProductInList searchItem :
+                    searchResult) {
+                if (searchItem.getImageUrl() != null && !searchItem.getImageUrl().isEmpty()) {
+                    searchResponseItems.add(new SearchResponseItem(searchItem.getProductId(),
+                            searchItem.getTitle(), searchItem.getPrice(), searchItem.getImageUrl()));
+                } else {
+                    searchResponseItems.add(new SearchResponseItem(searchItem.getProductId(),
+                            searchItem.getTitle(), searchItem.getPrice()));
+                }
+            }
+            SearchResponseData data = new SearchResponseData();
+            data.setData(searchResponseItems);
+            return gson.toJson(data);
+        }
+        return "{ \"data\": [] }";
     }
 }

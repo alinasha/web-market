@@ -21,10 +21,7 @@ class SearchResultListComponent {
                     const topOvElem = list.offsetTop;
                     const bottomOfVisibleWindow = window.innerHeight;
                     const toBottomHeight = (bottomOfVisibleWindow - topOvElem);
-                    console.log('wh: ' + window.innerHeight);
-                    console.log('top off: ' + topOvElem);
                     list.style.maxHeight = toBottomHeight - 30 + 'px';
-                    console.log('updateMaxHeight');
                 }
             };
 
@@ -80,8 +77,14 @@ class SearchResultListComponent {
      * @private
      */
     _getAndShowSearchResults(){
-        const requestText = 'text';
-        axios.post('/data/test', requestText)
+        class SearchPhraseClass {
+            constructor() {
+                this.phrase = '';
+            }
+        }
+        const requestText = new SearchPhraseClass();
+        requestText.phrase = document.getElementsByClassName('search-text-box')[0].value;
+        axios.post('/data/search', requestText)
             .then(resp => {
                 if (resp.status !== 200) {
                     console.error('Статус ответа: ' + resp.status + ': ' + resp.statusText);
